@@ -238,9 +238,12 @@ function editProduct(productId = null) {
 				$("#editQuantity").val(response.quantity);
 				
 				// brand name
-				$("#editBrandName").val(response.brand_id);
+				$("#editBrandName").val(response.brand_name);
 				// category name
-				$("#editCategoryName").val(response.categories_id);
+				$("#editCategoryName").val(response.category_name);
+
+				$("#editStateName").val(response.state_name);
+
 				// status
 				$("#editProductStatus").val(response.active);
 
@@ -254,6 +257,9 @@ function editProduct(productId = null) {
 					var brandName = $("#editBrandName").val();
 					var categoryName = $("#editCategoryName").val();
 					var productStatus = $("#editProductStatus").val();
+					var stateName = $("#editStateName").val();
+
+
 								
 
 					if(productName == "") {
@@ -296,6 +302,16 @@ function editProduct(productId = null) {
 						$("#editCategoryName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
 
+					if(stateName == "") {
+						$("#editStateName").after('<p class="text-danger">State Name field is required</p>');
+						$('#editStateName').closest('.form-group').addClass('has-error');
+					}	else {
+						// remov error text field
+						$("#editStateName").find('.text-danger').remove();
+						// success out for form 
+						$("#editStateName").closest('.form-group').addClass('has-success');	  	
+					}	// /else
+
 					if(productStatus == "") {
 						$("#editProductStatus").after('<p class="text-danger">Product Status field is required</p>');
 						$('#editProductStatus').closest('.form-group').addClass('has-error');
@@ -306,7 +322,7 @@ function editProduct(productId = null) {
 						$("#editProductStatus").closest('.form-group').addClass('has-success');	  	
 					}	// /else					
 
-					if(productName && quantity && brandName && categoryName && productStatus) {
+					if(productName && quantity && brandName && categoryName && productStatus && stateName) {
 						// submit loading button
 						$("#editProductBtn").button('loading');
 
