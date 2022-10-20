@@ -99,16 +99,16 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <select class="form-control" id="brandName" name="brandName">
-				      	<option value="">~~SELECT~~</option>
-				      	<?php 
-				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1 AND brand_active = 1";
-								$result = $connect->query($sql);
 
-								while($row = $result->fetch_array()) {
-									echo "<option value='".$row[0]."'>".$row[1]."</option>";
-								} // while
-								
-				      	?>
+				      	<option value="">~~SELECT~~</option>
+				      	<?php
+								$mysqli = new mysqli("localhost:3305","root","","invsystem");
+								$result =$mysqli -> query ("SELECT brand_name FROM brands where brand_status = 1 AND brand_active = 1");
+								while($row = mysqli_fetch_array($result)){
+								echo '<option>';
+								echo $row['brand_name'].'';
+								echo '</option>';}?>
+
 				      </select>
 				    </div>
 	        </div> <!-- /form-group-->	
@@ -118,16 +118,16 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <select type="text" class="form-control" id="categoryName" placeholder="Product Name" name="categoryName" >
-				      	<option value="">~~SELECT~~</option>
-				      	<?php 
-				      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
-								$result = $connect->query($sql);
-
-								while($row = $result->fetch_array()) {
-									echo "<option value='".$row[0]."'>".$row[1]."</option>";
-								} // while
+							<option value="" disabled selected >~~SELECT~~</option>
+							
+								<?php
+								$mysqli = new mysqli("localhost:3305","root","","invsystem");
+								$result =$mysqli -> query ("SELECT categories_name FROM categories where categories_status = 1 AND categories_active = 1");
+								while($row = mysqli_fetch_array($result)){
+								echo '<option>';
+								echo $row['categories_name'].'';
+								echo '</option>';}?>
 								
-				      	?>
 				      </select>
 				    </div>
 	        </div> <!-- /form-group-->					       
@@ -136,7 +136,7 @@
 	        	<label for="stateName" class="col-sm-3 control-label">Group Name: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-						<select  name="stateName" class="form-control" id ="stateName" placeholder="State Name">
+						<select  name="stateName" class="form-control" id ="stateName" placeholder="State Name" >
 								<option value="" disabled selected >~~SELECT~~</option>
 								<?php
 								$mysqli = new mysqli("localhost:3305","root","","invsystem");
@@ -267,16 +267,16 @@
 			        	<label class="col-sm-1 control-label">: </label>
 						    <div class="col-sm-8">
 						      <select class="form-control" id="editBrandName" name="editBrandName">
-						      	<option value="">~~SELECT~~</option>
-						      	<?php 
-						      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1 AND brand_active = 1";
-										$result = $connect->query($sql);
 
-										while($row = $result->fetch_array()) {
-											echo "<option value='".$row[0]."'>".$row[1]."</option>";
-										} // while
-										
-						      	?>
+									<option value="">~~SELECT~~</option>
+											<?php
+											$mysqli = new mysqli("localhost:3305","root","","invsystem");
+											$result =$mysqli -> query ("SELECT brand_name FROM brands where brand_status = 1 AND brand_active = 1");
+											while($row = mysqli_fetch_array($result)){
+											echo '<option>';
+											echo $row['brand_name'].'';
+											echo '</option>';}?>
+											
 						      </select>
 						    </div>
 			        </div> <!-- /form-group-->	
@@ -285,17 +285,16 @@
 			        	<label for="editCategoryName" class="col-sm-3 control-label">Category Name: </label>
 			        	<label class="col-sm-1 control-label">: </label>
 						    <div class="col-sm-8">
-						      <select type="text" class="form-control" id="editCategoryName" name="editCategoryName" >
-						      	<option value="">~~SELECT~~</option>
-						      	<?php 
-						      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
-										$result = $connect->query($sql);
-
-										while($row = $result->fetch_array()) {
-											echo "<option value='".$row[0]."'>".$row[1]."</option>";
-										} // while
-										
-						      	?>
+						      <select name="editCategoryName" class="form-control" id="editCategoryName"  >
+									<option value="" disabled selected >~~SELECT~~</option>
+							
+											<?php
+											$mysqli = new mysqli("localhost:3305","root","","invsystem");
+											$result =$mysqli -> query ("SELECT categories_name FROM categories where categories_status = 1 AND categories_active = 1");
+											while($row = mysqli_fetch_array($result)){
+											echo '<option>';
+											echo $row['categories_name'].'';
+											echo '</option>';}?>
 						      </select>
 						    </div>
 			        </div> <!-- /form-group-->	
@@ -304,18 +303,16 @@
 			        	<label for="editStateName" class="col-sm-3 control-label">State Name: </label>
 			        	<label class="col-sm-1 control-label">: </label>
 						    <div class="col-sm-8">
-						      <select class="form-control" id="editStateName" name="editStateName">
-						      	<option value="">~~SELECT~~</option>
-						      	<?php 
-						      	$sql = "SELECT state_id, state_name, state_active, state_status FROM state WHERE state_status = 1 AND state_active = 1";
-										$result = $connect->query($sql);
-
-										while($row = $result->fetch_array()) {
-											echo "<option value='".$row[0]."'>".$row[1]."</option>";
-										} // while
-										
-						      	?>
-						      </select>
+										<select  name="editStateName" class="form-control" id ="editStateName" placeholder="State Name" >
+										<option value="" disabled selected >~~SELECT~~</option>
+										<?php
+										$mysqli = new mysqli("localhost:3305","root","","invsystem");
+										$result =$mysqli -> query ("SELECT state_name FROM state where state_status = 1 AND state_active = 1");
+										while($row = mysqli_fetch_array($result)){
+										echo '<option>';
+										echo $row['state_name'].'';
+										echo '</option>';}?>
+						</select>
 						    </div>
 			        </div> <!-- /form-group-->	
 
