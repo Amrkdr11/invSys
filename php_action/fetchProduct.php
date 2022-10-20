@@ -6,23 +6,16 @@ require_once 'core.php';
 $sql = "SELECT product.product_id,
  product.product_name, 
  product.product_image,
-  product.brand_id,
- 		product.categories_id,
+  product.brand_name,
+ 		product.category_name,
 		 product.quantity,
 		  product.rate,
 			 product.active, 
 			 product.status, 
- 		brands.brand_name,
-		 categories.categories_name,
 		 product.submit_date,
 		 product.user,
-		 product.state_id,
-		 state.state_name
-		 
+		 product.state_name
 		FROM product 
-		INNER JOIN brands ON product.brand_id = brands.brand_id 
-		INNER JOIN categories ON product.categories_id = categories.categories_id 
-		INNER JOIN state ON product.state_id = state.state_id
 		WHERE product.status = 1 AND product.quantity>0";
 		
 		
@@ -65,14 +58,14 @@ if($result->num_rows > 0) {
 	// 	$brand = $row['brand_name'];
 	// }
 
-	$brand = $row[9];
-	$category = $row[10];
+	$brand = $row[3];
+	$category = $row[4];
 
 	$imageUrl = substr($row[2], 3);
 	$productImage = "<img class='img-round' src='".$imageUrl."' style='height:30px; width:50px;'  />";
-	$date =$row[11];
-	$user = $row[12];
-	$state =$row[13];
+	$date =$row[9];
+	$user = $row[10];
+	$state =$row[11];
 
 
 
@@ -80,7 +73,7 @@ if($result->num_rows > 0) {
  		// image
  		$productImage,
  		//group
-		$row[14],
+		$state,
 		//product name
  		$row[1], 
  		

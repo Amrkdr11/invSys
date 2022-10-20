@@ -2,10 +2,17 @@
 
 require_once 'core.php';
 
-$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status, state_name, brand_name, category_name FROM orders WHERE order_status = 1";
+$sql = "SELECT order_item.product_id,
+product.submit_date,
+product.state_name,
+product.user,
+product.brand_name,
+product.category_name,
+product.product_name,
+order_item.quantity
+FROM order_item 
+INNER JOIN product ON order_item.product_id = product.product_id ";
 $result = $connect->query($sql);
-
-
 
 $output = array('data' => array());
 
@@ -52,16 +59,18 @@ if($result->num_rows > 0) {
  		$x,
  		// order date
  		$row[1],
- 		// client name
+ 		// group name
  		$row[2], 
- 		// client contact
- 		$row[3], 		
-		 $row[5], 		 	
- 		$row[6], 		 	
+		// user
+		$row[3],
+ 		// brand 
+ 		$row[4],
+		//category name 
+		$row[5],
+		//product		
+		 $row[6],
+		//quantity
  		$row[7], 		 	
- 	
- 		$itemCountRow, 		 	
- 		$paymentStatus,
  		// button
  		$button 		
  		); 	

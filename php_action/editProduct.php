@@ -14,7 +14,7 @@ if($_POST) {
   $productStatus 	= $_POST['editProductStatus'];
 
 				
-	$sql = "UPDATE product SET product_name = '$productName',submit_date=current_timestamp(), brand_id = '$brandName', categories_id = '$categoryName', quantity = '$quantity', active = '$productStatus', status = 1, user = '".$_SESSION['username'] ."', state_id = '$stateName'
+	$sql = "UPDATE product SET product_name = '$productName',submit_date=current_timestamp(), brand_name = '$brandName', category_name = '$categoryName', quantity = '$quantity', active = '$productStatus', status = 1, user = '".$_SESSION['username'] ."', state_name = '$stateName'
 	WHERE product_id = $productId ";
 
 	if($connect->query($sql) === TRUE) {
